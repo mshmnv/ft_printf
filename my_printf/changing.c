@@ -6,7 +6,7 @@
 /*   By: lbagg <lbagg@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 19:25:15 by lbagg             #+#    #+#             */
-/*   Updated: 2020/07/09 20:23:27 by lbagg            ###   ########.fr       */
+/*   Updated: 2020/07/10 17:46:08 by lbagg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ char	*add_precision(char *put, t_spec **specs)
 			len -= 2;
 			(*specs)->precision += 2;
 		}
-		else
-			new_put = (char*)malloc(sizeof(char) * ((*specs)->precision + 1));
+		else if (!(new_put = malloc(sizeof(char) * ((*specs)->precision + 1))))
+			return (NULL);
 		while (i < (*specs)->precision - len)
 			new_put[i++] = '0';
 		ft_strlcpy(new_put + i, put, len + 1);
@@ -74,14 +74,16 @@ char	*cut_put(t_spec **specs, char *old)
 	if ((*specs)->type == 's' && (*specs)->precision != -1 &&
 	(*specs)->precision < (int)ft_strlen(old))
 	{
-		new = (char*)malloc(sizeof(char) * ((*specs)->precision + 1));
+		if (!(new = (char*)malloc(sizeof(char) * ((*specs)->precision + 1))))
+			return (NULL);
 		ft_strlcpy(new, old, (*specs)->precision + 1);
 		return (new);
 	}
 	else if (((*specs)->type == 'd' || (*specs)->type == 'i') && old[0] == '-')
 	{
 		(*specs)->dig_sign = 1;
-		new = (char*)malloc(sizeof(char) * (ft_strlen(old)));
+		if (!(new = (char*)malloc(sizeof(char) * (ft_strlen(old)))))
+			return (NULL);
 		ft_strlcpy(new, old + 1, ft_strlen(old));
 		return (new);
 	}

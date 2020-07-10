@@ -14,10 +14,9 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ) ft_printf.h
+	@make -C libft/
 	@ar rcs $(NAME) $(OBJ) libft/*.o
-	@echo ---------------------------------------
-	@echo ----------libftprintf created----------
-	@echo ---------------------------------------
+	@echo "----------libftprintf created----------"
 
 clean:
 	@rm -f $(OBJ)
@@ -28,4 +27,4 @@ fclean: clean
 re: fclean all
 
 norme:
-	@norminette ft_printf.c write.c specifiers.c convert.c changing.c put.c ft_printf.h
+	@norminette $(SRC) libft/

@@ -54,20 +54,20 @@ BONUSO = $(BONUS:.c=.o)
 FLAGS = -Wall -Wextra -Werror -c
 
 %.o:%.c
-	gcc $(FLAGS) $< -o $@
+	@gcc $(FLAGS) $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(SRCO)
-	ar rcs $(NAME) $(SRCO)
+	@ar rcs $(NAME) $(SRCO)
 	
 bonus: $(BONUSO)
-	ar rcs $(NAME) $(BONUSO)
+	@ar rcs $(NAME) $(BONUSO)
 
 clean:
-	/bin/rm -f $(SRCO) $(BONUSO)
+	@rm -f $(SRCO) $(BONUSO)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

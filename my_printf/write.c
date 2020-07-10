@@ -6,7 +6,7 @@
 /*   By: lbagg <lbagg@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 12:34:08 by lbagg             #+#    #+#             */
-/*   Updated: 2020/07/09 20:59:25 by lbagg            ###   ########.fr       */
+/*   Updated: 2020/07/10 16:31:13 by lbagg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		print_everything(char **put, t_spec *specs)
 
 	i = 0;
 	change_put(put, &specs, &put_len);
-	if (specs->type == 'c')
+	if (specs->type == 'c' || specs->type == '%')
 		return (print_chars(&specs, put));
 	if (specs->left)
 		i += print_left(&specs, put);
