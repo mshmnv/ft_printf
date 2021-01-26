@@ -1,6 +1,6 @@
 # FT_PRINTF function
 ## recoding printf function
-![Result](/img/result.png)
+
 
 * The prototype of ft_printf should be int ft_printf(const char *, ...);
 * You have to recode the libc’s printf function
